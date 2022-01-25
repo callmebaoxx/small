@@ -1,0 +1,6 @@
+<?php
+
+return [
+    'DEFAULT_UPDATE_DATE_TIME' => '0000-00-00 00:00:00',
+    'DEFAULT_UPDATE_DATE_TIME_VALID' => '2022-01-01 11:59:59',
+];
