@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Database\Migration\CustomBlueprint;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,5 +25,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        $this->app->bind('db.custom.schema', function ($app) {
+            $schema = $app['db']->connection()->getSchemaBuilder();
+            $schema->blueprintResolver(function ($table, $callback) {
+                return new CustomBlueprint($table, $callback);
+            });
+            return $schema;
+        });
     }
 }
